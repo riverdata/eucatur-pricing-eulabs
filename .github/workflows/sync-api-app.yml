@@ -1,0 +1,37 @@
+name: Sync API and APP to Public Repo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout public repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clone eucatur-pricing-api
+        run: |
+          git clone https://KellySoaresRiverdata:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/riverdata/eucatur-pricing-api.git temp-api
+          mkdir -p api
+          rsync -av --delete --exclude='.git' temp-api/ api/
+
+      - name: Clone eucatur-pricing-app
+        run: |
+          git clone https://KellySoaresRiverdata:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/riverdata/eucatur-pricing-app.git temp-app
+          mkdir -p app
+          rsync -av --delete --exclude='.git' temp-app/ app/
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if ! git diff --quiet --cached; then
+            git commit -m "Atualização automática API e APP"
+            git push
+          else
+            echo "Nenhuma mudança detectada."
