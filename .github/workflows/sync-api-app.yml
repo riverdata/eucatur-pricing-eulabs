@@ -1,4 +1,4 @@
-name: Sync API and APP to Public Repo
+name: Sync API and APP to Repo
 
 on:
   workflow_dispatch:
@@ -37,17 +37,26 @@ jobs:
           mkdir -p app
           rsync -av --delete --exclude='.git' temp-app/ app/
 
-      - name: Commit and push
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          git add .
-          
-          if ! git diff --quiet --cached; then
-            git commit -m "Atualização automática API e APP"
-            git push https://x-access-token:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/${{ github.repository }}.git HEAD:main
-          else
-            echo "Nenhuma mudança detectada."
-          fi
+      - name: Criar Pull Request automático
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Atualização automática API e APP"
+          branch: sync-updates
+          title: "Atualização automática dos projetos API e APP"
+          body: |
+            Este PR foi gerado automaticamente pelo GitHub Actions.
+            Inclui as últimas atualizações dos repositórios:
+            - **API:** riverdata/eucatur-pricing-api
+            - **APP:** riverdata/eucatur-pricing-app
+          delete-branch: true
+          author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
+      
+      - name: Auto-merge PR
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
+
 
