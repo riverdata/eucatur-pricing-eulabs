@@ -46,7 +46,7 @@ jobs:
           
           if ! git diff --quiet --cached; then
             git commit -m "Atualização automática API e APP"
-            git push origin main
+            git push https://x-access-token:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/${{ github.repository }}.git HEAD:main
           else
             echo "Nenhuma mudança detectada."
           fi
