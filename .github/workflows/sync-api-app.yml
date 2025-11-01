@@ -13,15 +13,27 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clone eucatur-pricing-api
+      - name: Checkout projeto API
+        uses: actions/checkout@v4
+        with:
+          repository: riverdata/eucatur-pricing-api
+          token: ${{ secrets.PRIVATE_TOKEN_EULABS }}
+          path: temp-api
+
+      - name: Checkout projeto APP
+        uses: actions/checkout@v4
+        with:
+          repository: riverdata/eucatur-pricing-app
+          token: ${{ secrets.PRIVATE_TOKEN_EULABS }}
+          path: temp-app
+
+      - name: Copiar arquivos do API
         run: |
-          git clone https://KellySoaresRiverdata:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/riverdata/eucatur-pricing-api.git temp-api
           mkdir -p api
           rsync -av --delete --exclude='.git' temp-api/ api/
 
-      - name: Clone eucatur-pricing-app
+      - name: Copiar arquivos do APP
         run: |
-          git clone https://KellySoaresRiverdata:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/riverdata/eucatur-pricing-app.git temp-app
           mkdir -p app
           rsync -av --delete --exclude='.git' temp-app/ app/
 
@@ -29,7 +41,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add .
+          
           if ! git diff --quiet --cached; then
             git commit -m "Atualização automática API e APP"
             git push
