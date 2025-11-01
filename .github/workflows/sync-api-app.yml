@@ -39,8 +39,9 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config --global user.name "$GIT_USER"
-          git config --global user.email "$GIT_EMAIL"
+          echo $GIT_EMAIL
+          git config user.email "$GIT_EMAIL"
+          git config user.name "$GIT_USER"
 
           git add .
 
