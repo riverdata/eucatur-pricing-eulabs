@@ -39,14 +39,19 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          
+          # Configurar usuário do commit
+          git config user.name "$GIT_USER"
+          git config user.email "$GIT_EMAIL"
+
+          # Adicionar mudanças
           git add .
-          
+
+          # Checar se há mudanças
           if ! git diff --quiet --cached; then
-            git commit -m "Atualização automática API e APP"
-            git push origin main
+              git commit -m "Atualização automática API e APP"
+
+              # Push usando token pessoal
+              git push https://$GIT_USER:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/${{ github.repository }}.git HEAD:main
           else
-            echo "Nenhuma mudança detectada."
+              echo "Nenhuma mudança detectada."
           fi
