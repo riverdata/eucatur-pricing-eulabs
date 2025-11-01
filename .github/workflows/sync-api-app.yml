@@ -39,19 +39,16 @@ jobs:
 
       - name: Commit and push
         run: |
-          # Configurar usuário do commit
-          git config user.name "$GIT_USER"
-          git config user.email "$GIT_EMAIL"
+          git config user.name "KellySoaresRiverdata"
+          git config user.email "kelly.soares@riverdata.com.br"
 
-          # Adicionar mudanças
           git add .
 
-          # Checar se há mudanças
           if ! git diff --quiet --cached; then
               git commit -m "Atualização automática API e APP"
 
               # Push usando token pessoal
-              git push https://$GIT_USER:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/${{ github.repository }}.git HEAD:main
+              git push https://KellySoaresRiverdata:${{ secrets.PRIVATE_TOKEN_EULABS }}@github.com/riverdata/eucatur-pricing-eulabs.git HEAD:main
           else
               echo "Nenhuma mudança detectada."
           fi
