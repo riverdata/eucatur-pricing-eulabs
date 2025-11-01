@@ -37,21 +37,16 @@ jobs:
           mkdir -p app
           rsync -av --delete --exclude='.git' temp-app/ app/
 
-      - name: Setup Git
-        uses: actions/setup-git@v3
-        with:
-          repository: riverdata/eucatur-pricing-eulabs
-          user-name: github-actions[bot]
-          user-email: github-actions[bot]@users.noreply.github.com
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Commit and push
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
           git add .
           
           if ! git diff --quiet --cached; then
             git commit -m "Atualização automática API e APP"
-            git push
+            git push origin main
           else
             echo "Nenhuma mudança detectada."
           fi
