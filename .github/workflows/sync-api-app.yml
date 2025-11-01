@@ -40,6 +40,7 @@ jobs:
       - name: Setup Git
         uses: actions/setup-git@v3
         with:
+          repository: riverdata/eucatur-pricing-eulabs
           user-name: github-actions[bot]
           user-email: github-actions[bot]@users.noreply.github.com
           token: ${{ secrets.GITHUB_TOKEN }}
