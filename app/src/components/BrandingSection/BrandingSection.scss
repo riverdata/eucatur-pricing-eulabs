@@ -1,0 +1,30 @@
+@use '../../assets/styles/mixins' as styles;
+
+.brandingsection {
+    background-image: url('../../assets/images/tela_login.svg');
+    overflow: hidden  !important;
+    max-width: 100% !important;
+    background-size: cover;
+    background-position: center;
+    border-end-end-radius: 0%;
+
+    @include styles.respond-to(lg){
+        border-end-end-radius: 30%;
+    }
+
+    &__image{
+        margin: 2.5em 2em;
+        height: 1.5em;
+
+        @include styles.respond-to(xl){
+            height: 2em;
+        }
+
+        @include styles.respond-to(xxl){
+            height: 3em;
+        }
+
+    }
+}
+
+

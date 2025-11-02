@@ -1,0 +1,73 @@
+:root {
+    color-scheme: light dark;
+
+    /* Tipografia */
+    --font-family-base: "Inter", sans-serif;
+    --font-size-sm: 0.875em;
+    --font-size-base: 1em;
+    --font-size-lg: 1.25em;
+    --font-weight-regular: 400;
+    --font-weight-bold: 700;
+
+    /* Cores */
+    --color-primary: #004923;
+    --color-secondary: #DA2128;
+    --color-error: #DA2128;
+    --color-background: #F2F2F2;
+    --color-text: #333333;
+
+    /* Color Seat */
+    --color-default: transparent;
+    --color-woman: #E2C9DD;
+    --color-panoramic: #BAD7F2;
+    --color-comfort: #8ABDC0;
+    --color-economic: #FBC557;
+
+    --color-woman-dark: rgba(162, 147, 179, 1); /* Cor escura para a borda */
+    --color-panoramic-dark: rgba(108, 139, 191, 1); /* Cor escura para a borda */
+    --color-comfort-dark: rgba(77, 123, 128, 1); /* Cor escura para a borda */
+    --color-economic-dark: rgba(212, 156, 59, 1); /* Cor escura para a borda */
+
+    /* Componentes */
+
+    --input-border-color-transparent: transparent;
+    --input-border-color: #DDE2E5;
+    --input-text-color: #808080;
+    --input-border-color-focus: #004923 !important;
+    --input-bg-color: #F5F5F5;
+
+
+    --button-menu-border-radius: 0.25em;
+    --button-menu-bg-color: #004923;
+    --button-menu-text-color: #5F6368;
+
+    --button-border-radius: 1em;
+    --button-bg-color: #004923;
+    --button-bg-color-secundary: #E1E3E6;
+    --button-text-color: #FFFFFF;
+    --button-text-color-secundary: #585858;
+
+    --modal-boder-radius: 1em;
+    --modal-box-shadow: 24;
+    --modal-bg-bolor: #FFFFFF;
+
+    --button-pagination-color: #DA21281F;
+
+    --card-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+
+
+    //Estilos para light 
+    --background-light: var(--color-background);
+    --text-light: var(--color-text);
+    --background-dark: #1e1e1e;
+    --text-dark: #ffffff;
+
+
+    line-height: 1.5;
+    font-weight: 400;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}

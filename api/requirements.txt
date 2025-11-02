@@ -1,0 +1,11 @@
+pandas
+numpy
+unidecode
+scikit-learn
+sqlalchemy
+plotly
+psycopg2
+uvicorn
+fastapi
+datetime
+python-dotenv

@@ -1,0 +1,15 @@
+version: "3"
+
+
+services:
+  eucatur-pricing-api:
+    image: eucatur-pricing-api:latest
+    container_name: eucatur-pricing-api
+    restart: always
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./:/usr/app/eucatur-pricing-api
+      - /usr/app/eucatur-pricing-api/node_modules
+    networks:
+      - web

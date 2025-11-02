@@ -1,0 +1,43 @@
+.layout {
+
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+
+
+    &__container {
+        display: flex;
+        overflow: scroll;
+        padding: 2.5rem 1rem;
+        margin-top: 2rem;
+        flex-direction: column;
+        flex: 1 1 0%;
+
+        @media (min-width: 640px) {
+            padding: 2.5rem;
+        }
+
+        &-is-active {
+            @media (min-width: 640px) {
+                margin-left: 13rem;
+                width: calc(100vw - 16rem);
+            }
+        }
+
+        &-is-inactive {
+            width: 100vw;
+        }
+
+        .container {
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 30px;
+            border: 1px;
+
+            @media (min-width: 640px) {
+                padding: 2rem;
+            }
+
+        }
+    }
+}

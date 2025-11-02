@@ -1,0 +1,49 @@
+.customfrequencies {
+  &__container {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    min-width: 13em;
+
+    .status {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+
+      &-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 8px;
+      }
+
+      .active {
+        background-color: #4caf50;
+      }
+
+      .inactive {
+        background-color: #DA2128;
+      }
+    }
+
+    .days {
+      margin-bottom: 8px;
+      display: inline-flex;
+      flex-flow: wrap;
+      &-button{
+        margin-right: 0.5em;
+      }
+    }
+    .date-range {
+      margin-bottom: 8px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+
+    }
+  }
+
+}

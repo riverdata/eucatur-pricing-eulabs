@@ -1,0 +1,49 @@
+@forward './variables';
+@use './mixins' as styles;
+
+body {
+    font-family: var(--font-family-base) !important;
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text) !important;
+}
+
+/* h1 {
+    @include styles.center-flex;
+    font-size: 2rem;
+} */
+
+/* Tema Claro */
+@media (prefers-color-scheme: light) {
+    :root {
+        --background-color: var(--background-light);
+        --color-text: var(--text-light);
+    }
+}
+
+/* Tema Escuro */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: var(--background-dark);
+        --color-text: var(--text-dark);
+    }
+}
+
+#root {
+    overflow: auto;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: 10px;
+}
