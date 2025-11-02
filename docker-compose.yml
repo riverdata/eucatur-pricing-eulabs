@@ -1,0 +1,74 @@
+version: "3"
+networks:
+  web:
+    external: true
+
+services:
+  data_eucatur:
+    image: postgres:latest
+    container_name: DataEucatur
+    restart: always
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=senha
+      - POSTGRES_DB=plataforma_eucatur
+    ports:
+      - "5435:5432"
+    volumes:
+      - ./database_plataforma_eucatur:/var/lib/postgresql/data
+    networks:
+      - web
+
+  proxy-manager:
+    image: 'docker.io/jc21/nginx-proxy-manager:latest'
+    container_name: EucaturNginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - web
+
+  eucatur-pricing-api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+      args:
+        BUILD_ENV: production
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      WEB_URL_FORGOT_PASSWORD: http://app.eucatur.riverdata.com.br/user/forgot-password
+      WEB_URL_ACTIVE_ACCOUNT: http://app.eucatur.riverdata.com.br/user/account-active
+      BASE_API_PYTHON: http://127.0.0.1:8002
+    image: eucatur-pricing-api:latest
+    container_name: eucatur-pricing-api
+    restart: always
+    expose:
+      - "4001"
+    networks:
+      - web
+    depends_on:
+      - data_eucatur
+
+  eucatur-pricing-app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+      args:
+        BUILD_ENV: production
+        VITE_API_URL: http://api.eucatur.riverdata.com.br
+    image: eucatur-pricing-app:latest
+    container_name: eucatur-pricing-app
+    restart: always
+    expose:
+      - "80"
+    networks:
+      - web
+    depends_on:
+      - eucatur-pricing-api

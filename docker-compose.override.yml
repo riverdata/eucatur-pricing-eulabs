@@ -1,0 +1,51 @@
+version: "3"
+networks:
+  web:
+    external: true
+
+services:
+  proxy-manager:
+    image: 'docker.io/jc21/nginx-proxy-manager:latest'
+    container_name: EucaturNginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - web
+
+  eucatur-pricing-api:
+    build:
+      dockerfile: Dockerfile.dev
+      args:
+        BUILD_ENV: development
+    env_file:
+      - .env.development
+    environment:
+      NODE_ENV: development
+    image: eucatur-pricing-api:latest
+    container_name: eucatur-pricing-api
+    restart: always
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./api:/api
+      - /api/node_modules 
+
+  eucatur-pricing-app:
+    build:
+      dockerfile: Dockerfile.dev
+      args:
+        BUILD_ENV: development
+        VITE_API_URL: http://eucatur-pricing-api:4001
+    volumes:
+      - ./app:/app
+      - /app/node_modules 
+    ports:
+      - "5173:4000"
+    
+

@@ -1,0 +1,5 @@
+database_plataforma_eucatur
+*.log
+.env*
+apiOld
+appOld
