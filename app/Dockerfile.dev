@@ -1,0 +1,17 @@
+FROM node:20-alpine
+
+ARG BUILD_ENV=production
+ENV NODE_ENV=$BUILD_ENV
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm install
+
+ARG VITE_API_URL
+ENV VITE_API_URL=$VITE_API_URL
+
+RUN echo "Ambiente de build: $BUILD_ENV"
+RUN echo "API URL: $VITE_API_URL"
+
+CMD ["npm", "run", "dev"]

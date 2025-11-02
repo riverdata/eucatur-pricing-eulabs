@@ -5,7 +5,12 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   server: {
-    port: 4000, // Substitua pela porta desejada
+    host: true,
+    port: 4000,     
+    watch: {
+      usePolling: true,
+      interval: 100,
+    },
   },
   resolve: {
     alias: {
