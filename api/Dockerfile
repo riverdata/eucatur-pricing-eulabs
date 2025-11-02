@@ -1,31 +1,57 @@
-FROM node:20
+# ----------------------------
+# Etapa 1: Build
+# ----------------------------
+FROM node:20-alpine AS build
 
-RUN mkdir -p /usr/app/eucatur-pricing-api
-WORKDIR /usr/app/eucatur-pricing-api
+ARG BUILD_ENV=production
+ENV NODE_ENV=$BUILD_ENV
+
+WORKDIR /api
+
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+
+RUN apk add --no-cache python3 make g++
+
+RUN echo "Ambiente de build: $BUILD_ENV"
+
+RUN npm run build
+
+# ----------------------------
+# Etapa 2: Servidor
+# ----------------------------
+FROM node:20 AS production
+
+RUN mkdir -p /usr/api/eucatur-pricing-api
+WORKDIR /usr/api/eucatur-pricing-api
 
 RUN apt-get update && apt-get install -y \
     python3-venv \
-    python3-pip \
+    python3-pip netcat-openbsd \
     && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv /venv
 
 COPY requirements.txt .
 
-# Instalar as dependências dentro do ambiente virtual
 RUN /venv/bin/pip install --no-cache-dir -r requirements.txt
 
 ENV PATH="/venv/bin:$PATH"
 
-COPY pricing/ .
+COPY pricing/ /usr/api/eucatur-pricing-api/pricing
 
-COPY .env .
+COPY package*.json ./
+COPY tsconfig.json ./
 
-COPY package.json .
+COPY wait-for-it.sh ./
+RUN chmod +x wait-for-it.sh
+
 RUN npm install
 
-COPY dist/ .
+COPY --from=build /api/dist /usr/api/eucatur-pricing-api/dist
 
 EXPOSE 4001
 
-CMD [ "npm", "start" ]
+CMD sh -c "./wait-for-it.sh data_eucatur 5432 -- npm run migration:run-js && npm run start"

@@ -11,13 +11,13 @@ const optionsDataSource = {
   extra: config.extra,
   entities: [
     (config.isProduction || config.isStaging)
-      ? "dist/entities/**/*.entity.js"
-      : "src/entities/**/*.entity.ts",
+      ? "dist/entities/*.entity.js"
+      : "src/entities/*.entity.ts",
   ],
   migrations: [
     (config.isProduction || config.isStaging)
-      ? "dist/database/migrations/**/*.js"
-      : "src/database/migrations/**/*.ts",
+      ? "dist/database/migrations/*.js"
+      : "src/database/migrations/*.ts",
   ],
 } as DataSourceOptions;
 const AppDataSource = new DataSource(optionsDataSource);

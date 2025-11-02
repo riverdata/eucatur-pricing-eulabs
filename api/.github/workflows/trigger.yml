@@ -1,0 +1,21 @@
+name: Trigger Eucatur-pricing-eulabs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-eucatur-pricing-eulabs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger workflow in Eucatur-pricing-eulabs
+        env:
+          GITHUB_TOKEN_PAT: ${{ secrets.PRIVATE_TOKEN_EULABS }}
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GITHUB_TOKEN_PAT" \
+            https://api.github.com/repos/riverdata/eucatur-pricing-eulabs/actions/workflows/sync-api-app.yml/dispatches \
+            -d '{"ref":"main"}'

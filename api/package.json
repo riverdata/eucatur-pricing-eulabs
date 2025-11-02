@@ -4,7 +4,7 @@
   "description": "Backend da plataforma de precificação do eucatur",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "npx tsc -p tsconfig.json",
     "dev": "concurrently \"uvicorn pricing.app:app --reload --port 8002\" \"nodemon --watch src -w .env src/index.ts\"",
     "start": "concurrently \"uvicorn pricing.app:app --reload --port 8002\" \"ts-node dist/index.js\"",
     "dev:server": "ts-node-dev -r tsconfig-paths/register  --inspect --transpile-only --ignore-watch node_modules src/index.ts",
@@ -27,31 +27,31 @@
     "@types/express": "^5.0.0",
     "@types/nodemailer": "^6.4.17",
     "@types/uuid": "^9.0.7",
+    "@types/bcrypt": "5.0.1",
+    "@types/jsonwebtoken": "9.0.4",
     "axios": "^1.6.8",
-    "bcrypt": "^5.1.1",
+    "bcrypt": "5.1.1",
     "concurrently": "^9.1.0",
     "dayjs": "^1.11.13",
     "fastify": "^4.24.3",
     "fastify-zod": "^1.4.0",
-    "jsonwebtoken": "^9.0.2",
+    "jsonwebtoken": "9.0.2",
     "lodash": "^4.17.21",
     "node-cron": "^4.0.5",
     "nodemailer": "^6.9.16",
-    "nodemon": "^3.0.1",
     "pg": "^8.11.3",
     "reflect-metadata": "^0.1.13",
     "typeorm": "^0.3.17",
     "uuid": "^9.0.1",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "typescript": "^5.2.2"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.1",
-    "@types/jsonwebtoken": "^9.0.4",
     "@types/node": "^20.8.8",
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.2.2"
+    "nodemon": "^3.0.1",
+    "tsconfig-paths": "^4.2.0"
   },
   "_moduleAliases": {
     "@": "dist"
