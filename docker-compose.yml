@@ -10,8 +10,8 @@ services:
     container_name: DataEucatur
     restart: always
     environment:
-      - POSTGRES_USER=user
-      - POSTGRES_PASSWORD=senha
+      - POSTGRES_USER=eucatur
+      - POSTGRES_PASSWORD=JA9Q7YohKBpLfhITNW2y73N54p
       - POSTGRES_DB=plataforma_eucatur
     ports:
       - "5435:5432"
