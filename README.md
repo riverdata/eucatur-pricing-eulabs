@@ -1,4 +1,5 @@
-# EUCATUR PRICING API
+# EUCATUR PRICING EULABS
+Este projeto contempla a configuração do banco de dados, API e APP do projeto de precificação.
 
 ## ✨ Executando na Máquina Virtual
 

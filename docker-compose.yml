@@ -1,7 +1,8 @@
 version: "3"
 networks:
   web:
-    external: true
+    name: web
+    driver: bridge
 
 services:
   data_eucatur:
