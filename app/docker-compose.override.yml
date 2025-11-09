@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  eucatur-pricing-app:
+    build:
+      dockerfile: Dockerfile.dev
+      args:
+        BUILD_ENV: development
+        VITE_API_URL: http://localhost:4001
+    volumes:
+      - ./:/app
+      - /app/node_modules 
+    ports:
+      - "5173:4000"
+    
+

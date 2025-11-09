@@ -1,0 +1,36 @@
+version: "3"
+networks:
+  web:
+    driver: bridge
+    name: web
+    external: ${USE_EXTERNAL_WEB_NETWORK:-true}
+
+services:
+  proxy-manager:
+    image: 'docker.io/jc21/nginx-proxy-manager:latest'
+    container_name: EucaturNginx
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - web
+
+  eucatur-pricing-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BUILD_ENV: production
+        VITE_API_URL: http://api.eucatur.riverdata.com.br
+    image: eucatur-pricing-app:latest
+    container_name: eucatur-pricing-app
+    restart: always
+    expose:
+      - "80"
+    networks:
+      - web
