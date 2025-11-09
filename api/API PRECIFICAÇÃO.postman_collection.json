@@ -1,0 +1,799 @@
+{
+	"info": {
+		"_postman_id": "f954c631-2fb7-4cc3-805c-83dc92c32e24",
+		"name": "API PRECIFICAÇÃO",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19197267"
+	},
+	"item": [
+		{
+			"name": "Agency",
+			"item": [
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/agency",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Ativas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/agency/active",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sincronizar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/agency/sync",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agency",
+								"sync"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Line",
+			"item": [
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/lines",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"lines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sincronizar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/lines/sync",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"lines",
+								"sync"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Seat",
+			"item": [
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/seats",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"seats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Agency Type",
+			"item": [
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/agencyType",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"agencyType"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Sincronizar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/category/sync",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category",
+								"sync"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/category",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Department",
+			"item": [
+				{
+					"name": "Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/department",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Comercial\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/department",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"department"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Comercial\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/department/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"department",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/department/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"department",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/department/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"department",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pricing History",
+			"item": [
+				{
+					"name": "Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/pricing_history",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pricing_history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Comercial\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/pricing_history",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pricing_history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Comercial\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/pricing_history/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pricing_history",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/pricing_history/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pricing_history",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/pricing_history/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"pricing_history",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Buscar Todos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"João\",\n  \"surname\": \"Silva\",\n  \"email\": \"joao.silva@eucatur.com.br\",\n  \"role\": \"MANAGER\",\n  \"department\": {\n    \"id\": \"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a\",\n    \"name\": \"Desenvolvimento\"\n  }\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/users",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirmar Email",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}/users/39891321-691f-4e26-8b49-f66f35f0bb7e/email-confirmation",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"39891321-691f-4e26-8b49-f66f35f0bb7e",
+								"email-confirmation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ativação usuario",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\": \"token recebido via e-mail\",\r\n  \"password\": \"Senha\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/account/active",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"account",
+								"active"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Administrador\",\n  \"surname\": \"Master\"\n}\n"
+						},
+						"url": {
+							"raw": "{{baseURL}}/users/39891321-691f-4e26-8b49-f66f35f0bb7e",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"39891321-691f-4e26-8b49-f66f35f0bb7e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar um",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/users/39891321-691f-4e26-8b49-f66f35f0bb7e",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"users",
+								"39891321-691f-4e26-8b49-f66f35f0bb7e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Factor - Excluido",
+			"item": [
+				{
+					"name": "Buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/factor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"factor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Comercial\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/factor",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"factor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Parcialmente",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Comercial\"\n}"
+						},
+						"url": {
+							"raw": "{{baseURL}}/factor/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"factor",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apagar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/factor/e7f44900-cafc-40e5-b8a6-7f534dc2bb0a",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"factor",
+								"e7f44900-cafc-40e5-b8a6-7f534dc2bb0a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pricing Impetus",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"pricing_code\": \"PRC-2025-001\",\r\n  \"sale_at\": \"2025-11-09T14:30:00Z\",\r\n  \"travel_id\": \"TRV-987654\",\r\n  \"line_code\": \"LN-45A\",\r\n  \"sectional_code_origin\": \"ORI-001\",\r\n  \"sectional_code_destination\": \"DST-009\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/pricing_history/impetus",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"pricing_history",
+						"impetus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"\r",
+							"if (response.success) {\r",
+							"    pm.collectionVariables.set(\"access_token\", response.data.token);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"email\",\r\n    \"password\": \"senha\",\r\n    \"time\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "baseURL",
+			"value": ""
+		}
+	]
+}
