@@ -1,9 +1,10 @@
 version: "3"
 networks:
   web:
-    name: web
     driver: bridge
-
+    name: web
+    external: ${USE_EXTERNAL_WEB_NETWORK:-true}
+    
 services:
   data_eucatur:
     image: postgres:latest
@@ -11,7 +12,7 @@ services:
     restart: always
     environment:
       - POSTGRES_USER=eucatur
-      - POSTGRES_PASSWORD=JA9Q7YohKBpLfhITNW2y73N54p
+      - POSTGRES_PASSWORD=senha
       - POSTGRES_DB=plataforma_eucatur
     ports:
       - "5435:5432"
