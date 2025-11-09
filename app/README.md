@@ -90,7 +90,7 @@ Verifique se as portas 81/80/443 estão liberadas no servidor cloud
 </details>
 
 <details>
-<summary>## ✨ Procedimento para atualizar e subir o aplicativo</summary>
+<summary>## ✨ Procedimento para atualizar e subir o aplicativo em Desenvolvimento</summary>
 
 1. **Acessar a pasta do aplicativo**  
    Entre no diretório onde está localizado o código-fonte do aplicativo:
@@ -99,10 +99,10 @@ Verifique se as portas 81/80/443 estão liberadas no servidor cloud
 cd eucatur-pricing-app
 ```
 2. **Parar os containers em execução**
-Finalize os serviços atualmente ativos no ambiente de staging:
+Finalize os serviços atualmente ativos no ambiente de Desenvolvimento:
 
 ```bash
-sudo docker-compose -f docker-compose-staging.yml down
+sudo docker-compose down
 ```
 3. **Remover a imagem antiga**
 Apague a imagem Docker existente para garantir que uma nova versão seja criada do zero:
@@ -110,17 +110,11 @@ Apague a imagem Docker existente para garantir que uma nova versão seja criada 
 ```bash
 sudo docker rmi eucatur-pricing-app
 ```
-4. **Construir a nova imagem**
+4. **Construir a nova imagem e Subir a nova versão**
 Gere a nova imagem Docker com base no código atualizado:
 
 ```bash
-sudo docker build . -t eucatur-pricing-app
-```
-5. **Subir a nova versão**
-Inicie novamente os serviços no ambiente de staging, agora utilizando a nova imagem:
-
-```bash
-sudo docker-compose -f docker-compose-staging.yml up -d
+sudo docker-compose up -d --build
 ```
 
 </details>
