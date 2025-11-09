@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  eucatur-pricing-api:
+    build:
+      dockerfile: Dockerfile.dev
+      args:
+        BUILD_ENV: development
+    env_file:
+      - .env.development
+    environment:
+      NODE_ENV: development
+      WEB_URL_FORGOT_PASSWORD: http://localhost:5173/user/forgot-password
+      WEB_URL_ACTIVE_ACCOUNT: http://localhost:5173/user/account-active
+    image: eucatur-pricing-api:latest
+    container_name: eucatur-pricing-api
+    restart: always
+    ports:
+      - "4001:4001"
+    volumes:
+      - ./:/api
+      - /api/node_modules 
+

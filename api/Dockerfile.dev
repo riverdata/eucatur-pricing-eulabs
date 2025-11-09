@@ -31,8 +31,6 @@ RUN chmod +x wait-for-it.sh
 
 RUN npm install
 
-COPY . .
-
 EXPOSE 4001
 
 CMD sh -c "./wait-for-it.sh data_eucatur 5432 -- npm run migration:run && npm run dev"

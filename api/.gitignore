@@ -27,10 +27,14 @@ yarn.lock
 *.sw?
 
 # Custom files
-.env
+.env*
 
 eucatur_precificacao/*
 database_plataforma_eucatur/*
 database_procedure_eucatur/*
+
+eucatur_precificacaoOLD/*
+database_plataforma_eucaturOLD/*
+database_procedure_eucaturOLD/*
 
 src/database/migrationsOld

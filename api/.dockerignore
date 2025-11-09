@@ -1,0 +1,43 @@
+
+eucatur_precificacaoOLD/*
+database_plataforma_eucaturOLD/*
+database_procedure_eucaturOLD/*
+
+database_plataforma_eucatur/*
+
+# Dependências
+node_modules
+venv
+__pycache__
+
+# Builds locais
+dist
+build
+.vite
+.vite-temp
+
+# Controle de versão
+.git
+.gitignore
+
+# Arquivos de ambiente
+.env
+.env.*
+*.env
+
+# IDEs e ferramentas locais
+.vscode
+.idea
+
+# Logs e caches
+*.log
+*.cache
+coverage
+tmp
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+*.pdf
+*.tar.gz
