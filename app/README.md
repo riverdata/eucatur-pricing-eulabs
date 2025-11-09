@@ -1,14 +1,13 @@
 # EUCATUR PRICING APP
 
-## ✨ Executando na Máquina Virtual
+## ✨ Executando na Máquina Virtual/Servidor
 
 > [!IMPORTANT]
 > Utilize o Docker e o Ngnix para disponibilizar o aplicativo externamente, este processo é executado apenas uma unica vez para uma maquina virtual nova. Caso já possua o aplicativo configurado pule para a etapa
 >
 > - "Subir atualizações do aplicativo".
-> - Altere o arquivo .env com o caminho local dos arquivos
+> - Altere a variavel VITE_API_URL nos docker-compose
 
-Primeiramente crie uma instância na AWS (ou similar) com SO ubuntu(opcional)
 
 <details>
 
