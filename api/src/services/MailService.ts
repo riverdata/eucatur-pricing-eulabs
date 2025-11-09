@@ -27,7 +27,7 @@ export class MailService {
   async send(data: MailSendData) {
     var imagePath = path.join(__dirname, '../utils/images/logo_eucatur.png');
     return await this.transporter.sendMail({
-      from: 'no-reply@riverdata.com.br',
+      from: 'no-reply@eucatur.com.br',
       ...data,
       attachments: [{
         filename: 'logo_eucatur.png',

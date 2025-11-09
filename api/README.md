@@ -89,6 +89,38 @@ Verifique se as portas 81/80/443 estão liberadas no servidor cloud
 
 </details>
 
+
+<details>
+<summary>## ✨ Procedimento para atualizar e subir o aplicativo em Desenvolvimento</summary>
+
+1. **Acessar a pasta do aplicativo**  
+   Entre no diretório onde está localizado o código-fonte do aplicativo:
+
+```bash
+cd eucatur-pricing-api
+```
+2. **Parar os containers em execução**
+Finalize os serviços atualmente ativos no ambiente de Desenvolvimento:
+
+```bash
+sudo docker-compose down
+```
+3. **Remover a imagem antiga**
+Apague a imagem Docker existente para garantir que uma nova versão seja criada do zero:
+
+```bash
+sudo docker rmi eucatur-pricing-api
+```
+4. **Construir a nova imagem e Subir a nova versão**
+Gere a nova imagem Docker com base no código atualizado:
+
+```bash
+sudo docker-compose up -d --build
+```
+
+</details>
+
+
 <details>
 <summary>## ✨ Exemplo de requisição para obtenção de preços para o Impetus </summary>
 
