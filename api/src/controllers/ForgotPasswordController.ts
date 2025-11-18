@@ -1,9 +1,9 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import jwt from "jsonwebtoken";
-import MailService from "../services/MailService";
 import bcrypt from "bcrypt";
 import { config } from "../config";
 import UserService from "../services/UserService";
+import { mailService } from "../index";
 
 export default class ForgotPasswordController {
 
@@ -31,7 +31,7 @@ export default class ForgotPasswordController {
 
       await UserService.update(data.id, { resetPasswordToken });
 
-      new MailService().send({
+      const mail = await mailService.send({
         to: email,
         subject: "[Precificação] Recupere sua senha",
         html: `
@@ -40,7 +40,7 @@ export default class ForgotPasswordController {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Recuperação de Senha</title>
-          ${new MailService().style()}
+          ${mailService.style()}
       </head>
       <body>
           <div class="container">
@@ -59,10 +59,18 @@ export default class ForgotPasswordController {
       `
       });
 
-      reply.status(200).send({
-        success: true,
-        message: "E-mail de recuperação enviado.",
-      });
+      if (mail.accepted && mail.accepted.length > 0) {
+        return reply.status(200).send({
+          success: true,
+          message: "E-mail de recuperação enviado.",
+        });
+      } else {
+        return reply.status(500).send({
+          success: true,
+          message: "E-mail de recuperação não enviado.",
+        });
+      }
+      
 
     } catch (error) {
       return reply.status(500).send({

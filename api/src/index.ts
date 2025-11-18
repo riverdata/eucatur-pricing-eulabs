@@ -6,6 +6,10 @@ import { AppDataSource } from "./database/data-source";
 import fastifyMultipart from "@fastify/multipart";
 import http from "http";
 
+import { MailService } from "./services/mailService";
+export const mailService = new MailService();
+
+
 import loginRoutes from "./routes/Login.routes";
 import userRoutes from "./routes/User.routes";
 import pricingRoutes from "./routes/Pricing.routes";

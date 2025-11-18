@@ -1,7 +1,7 @@
 import bcrypt from "bcrypt";
 import type { FastifyReply, FastifyRequest } from "fastify";
 import { UserRole, UserStatus } from "../entities";
-import MailService from "../services/MailService";
+import { mailService } from "../index";
 import { config } from "../config";
 import jwt from "jsonwebtoken";
 import UserService from "../services/UserService";
@@ -61,7 +61,7 @@ export default class UserController {
 
       const webClientUrl = `${config.links.active_account}?token=${activationToken}`;
 
-      new MailService().send({
+      const mail = await mailService.send({
         to: email,
         subject: "[Precificação] Ative sua conta",
         html: `
@@ -70,7 +70,7 @@ export default class UserController {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Ativação de Conta</title>
-          ${new MailService().style()}
+          ${mailService.style()}
       </head>
       <body>
           <div class="container">
@@ -88,12 +88,21 @@ export default class UserController {
       `,
       });
       const data = await UserService.getByOne({ id });
-      return reply.status(200).send({
-        success: true,
-        data: data,
-        message: "Usuário criado com sucesso."
-      });
 
+      if (mail.accepted && mail.accepted.length > 0) {
+        return reply.status(200).send({
+          success: true,
+          data: data,
+          message: "Usuário criado com sucesso.",
+        });
+      } else {
+        return reply.status(500).send({
+          success: true,
+          data: data,
+          message: "usuário criado com sucesso. E-mail de ativação não enviado.",
+        });
+      }
+      
     } catch (error) {
       return reply.status(500).send({
         success: false,
@@ -247,7 +256,7 @@ export default class UserController {
 
       const webClientUrl = `${config.links.active_account}?token=${activationToken}`;
 
-      new MailService().send({
+      const mail = await mailService.send({
         to: email,
         subject: "[Precificação] Ative sua conta",
         html: `
@@ -256,7 +265,7 @@ export default class UserController {
           <meta charset="UTF-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
           <title>Ativação de Conta</title>
-          ${new MailService().style()}
+          ${mailService.style()}
       </head>
       <body>
           <div class="container">
@@ -274,10 +283,17 @@ export default class UserController {
       `
       });
 
-      reply.status(200).send({
-        success: true,
-        message: "E-mail enviado com sucesso!"
-      });
+      if (mail.accepted && mail.accepted.length > 0) {
+        return reply.status(200).send({
+          success: true,
+          message: "E-mail enviado com sucesso.",
+        });
+      } else {
+        return reply.status(500).send({
+          success: true,
+          message: "E-mail não enviado.",
+        });
+      }
 
     } catch (error) {
       return reply.status(500).send({
