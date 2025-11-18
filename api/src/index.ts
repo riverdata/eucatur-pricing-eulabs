@@ -6,7 +6,7 @@ import { AppDataSource } from "./database/data-source";
 import fastifyMultipart from "@fastify/multipart";
 import http from "http";
 
-import { MailService } from "./services/mailService";
+import { MailService } from "./services/MailService";
 export const mailService = new MailService();
 
 
