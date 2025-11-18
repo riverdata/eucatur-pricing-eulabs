@@ -89,7 +89,7 @@ export default class UserController {
       });
       const data = await UserService.getByOne({ id });
 
-      if (mail.accepted && mail.accepted.length > 0) {
+      if (mail.success) {
         return reply.status(200).send({
           success: true,
           data: data,
@@ -97,7 +97,8 @@ export default class UserController {
         });
       } else {
         return reply.status(500).send({
-          success: true,
+          success: false,
+          error: mail.error,
           data: data,
           message: "usuário criado com sucesso. E-mail de ativação não enviado.",
         });
@@ -283,14 +284,15 @@ export default class UserController {
       `
       });
 
-      if (mail.accepted && mail.accepted.length > 0) {
+      if (mail.success) {
         return reply.status(200).send({
           success: true,
           message: "E-mail enviado com sucesso.",
         });
       } else {
         return reply.status(500).send({
-          success: true,
+          success: false,
+          error: mail.error,
           message: "E-mail não enviado.",
         });
       }

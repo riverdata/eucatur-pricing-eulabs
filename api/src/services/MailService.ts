@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 import { config } from "../config";
-import path from 'path';
+import path from "path";
 
 type MailSendData = {
   to: string;
@@ -25,16 +25,24 @@ export class MailService {
   }
 
   async send(data: MailSendData) {
-    var imagePath = path.join(__dirname, '../utils/images/logo_eucatur.png');
-    return await this.transporter.sendMail({
-      from: config.mail.from,
-      ...data,
-      attachments: [{
-        filename: 'logo_eucatur.png',
-        path: `${imagePath}`,
-        cid: 'logoImage'
-      }]
-    });
+    var imagePath = path.join(__dirname, "../utils/images/logo_eucatur.png");
+    try {
+      const info = await this.transporter.sendMail({
+        from: config.mail.from,
+        ...data,
+        attachments: [
+          {
+            filename: "logo_eucatur.png",
+            path: `${imagePath}`,
+            cid: "logoImage",
+          },
+        ],
+      });
+      return { success: true, info };
+    } catch (err: unknown) {
+      const error = err instanceof Error ? err : new Error(String(err));
+      return { success: false, error: error.message };
+    }
   }
   style() {
     return `<style>
@@ -85,7 +93,7 @@ export class MailService {
               width: 7rem;
               height: auto;
             }
-          </style>`
+          </style>`;
   }
 }
 

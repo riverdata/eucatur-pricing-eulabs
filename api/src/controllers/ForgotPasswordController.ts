@@ -59,14 +59,15 @@ export default class ForgotPasswordController {
       `
       });
 
-      if (mail.accepted && mail.accepted.length > 0) {
+      if (mail.success) {
         return reply.status(200).send({
           success: true,
           message: "E-mail de recuperação enviado.",
         });
       } else {
         return reply.status(500).send({
-          success: true,
+          success: false,
+          error: mail.error,
           message: "E-mail de recuperação não enviado.",
         });
       }
