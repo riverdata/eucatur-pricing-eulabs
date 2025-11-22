@@ -15,10 +15,15 @@ export class MailService {
     const configTransporter = {
       host: config.mail.host,
       port: config.mail.port,
+      secure: config.mail.isSSL,
       auth: {
         user: config.mail.user,
         pass: config.mail.pass,
       },
+      requireTLS: config.mail.isTLS,
+      tls: {
+        rejectUnauthorized: !config.mail.certSelf
+      }
     };
 
     this.transporter = nodemailer.createTransport(configTransporter);

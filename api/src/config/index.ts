@@ -41,5 +41,8 @@ export const config = {
     user: process.env.MAIL_USER || "",
     pass: process.env.MAIL_PASS || "",
     from: process.env.MAIL_FROM || "",
+    isSSL: process.env.MAIL_SSL === "true",
+    isTLS: process.env.MAIL_TLS === "true",
+    certSelf: process.env.MAIL_CERTSELF === "true",
   },
 };
